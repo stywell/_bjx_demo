@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*jquery*/
+        //get
+        $.ajax({
+            url: '/api/test',
+            type: 'GET',
+            data: data,
+        }).done(function(data, ts, xhr) {
+        }).fail(function(xhr, ts, err) {
+        }).always(function(xhr, ts) {
+        })
+
+        //post正文为x-www-form-urlencoded
+        $.ajax({
+            url: '/api/test',
+            type: 'POST',
+            data: data,
+        }).done(function(data, ts, xhr) {
+        }).fail(function(xhr, ts, err) {
+        }).always(function(xhr, ts) {
+        })
+
+        //post正文为multipart/form-data
+        $.ajax({
+            url: '/api/test',
+            type: 'POST',
+            data: new FormData(form),
+            processData: false,
+            contentType: false,
+            cache: false,
+        }).done(function(data, ts, xhr) {
+        }).fail(function(xhr, ts, err) {
+        }).always(function(xhr, ts) {
+        })
+
+        //post正文为json
+        $.ajax({
+            url: '/api/test',
+            type: 'POST',
+            data: JSON.stringify(data),
+            processData: false,
+            contentType: 'application/json',
+            cache: false,
+        }).done(function(data, ts, xhr) {
+        }).fail(function(xhr, ts, err) {
+        }).always(function(xhr, ts) {
+        })
+
+        //https://api.jquery.com/jquery.ajax/#jQuery-ajax1
+        $.ajax({
+            url: '/api/test',
+            type: 'POST',
+            data: JSON.stringify({type: 'json'}),                          //假如是对象默认会转为键值对字符串
+            processData: false,                                            //禁止转换data为键值对字符串
+            contentType: 'application/json',                               //声明请求正文的格式
+            cache: false,                                                  //禁止缓存结果
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function(XMLHttpRequest) {
+                console.group('发送之前')
+                console.log(XMLHttpRequest)
+                console.groupEnd()
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.group('请求错误')
+                console.log(XMLHttpRequest, textStatus, errorThrown)
+                console.groupEnd()
+                console.log(XMLHttpRequest.status)    //获取非200响应的 状态码
+            },
+            dataFilter: function(data, type) {
+                console.group('预处理数据')
+                console.log(data, type)
+                console.groupEnd()
+                return data    //必须返回data 才会往下执行
+            },
+            success: function(data, textStatus, XMLHttpRequest) {
+                console.group('请求成功')
+                console.log(data, textStatus, XMLHttpRequest)
+                console.groupEnd()
+                console.log(XMLHttpRequest.getResponseHeader("content-type"))    //获取200响应的 内容类型
+            },
+            complete: function(XMLHttpRequest, textStatus) {
+                console.group('请求完成')
+                console.log(XMLHttpRequest, textStatus)
+                console.groupEnd()
+            }
+        })
+
+        //兼容性
+        $.ajax({
+            url: 'https://18e4872b20.endpoints.dev',
+        }).done(function(data, ts, xhr) {       //1.5版本添加
+            console.log('成功', {data, ts, xhr})
+        }).fail(function(xhr, ts, err) {        //1.5版本添加
+            console.log('失败', {xhr, ts, err})
+        }).always(function(xhr, ts) {           //1.6版本添加
+            console.log('完成', {xhr, ts})
+        }).then(function(data, ts, xhr) {       //1.5版本添加 1.8版本返回数据过滤器
+            console.log('成功', {data, ts, xhr})
+            return data
+        }, function(xhr, ts, err) {
+            console.log('失败', {xhr, ts, err})
+        }).catch(function(xhr, ts, err) {       //3.0版本添加
+            console.log('失败', {xhr, ts, err})
+        })
+
+
+
+        /*axios*/
+        //get请求
+        axios({
+            url: '/api/test',
+            method: 'GET',
+            params: data,
+        }).then((res) => {
+            console.log(res.data)
+        }).catch((err) => {
+        }).finally(() => {
+        })
+
+        //post正文为json
+        axios({
+            url: '/api/test',
+            method: 'POST',
+            data: data,
+        }).then((res) => {
+            console.log(res.data)
+        }).catch((err) => {
+        }).finally(() => {
+        })
+
+        //post正文为x-www-form-urlencoded
+        axios({
+            url: '/api/test',
+            method: 'POST',
+            data: new URLSearchParams(data),
+        }).then((res) => {
+            console.log(res.data)
+        }).catch((err) => {
+        }).finally(() => {
+        })
+
+        //post正文为multipart/form-data
+        axios({
+            url: '/api/test',
+            method: 'POST',
+            data: new FormData(form),
+        }).then((res) => {
+            console.log(res.data)
+        }).catch((err) => {
+        }).finally(() => {
+        })
+
+
+
+        /*fetch*/
+        //get返回html
+        fetch(url)
+        .then(res => res.text())
+        .then(html => console.log(html))
+
+        //get返回json (附带get请求参数)
+        fetch(url+'?'+new URLSearchParams(data).toString())
+        .then(res => res.json())
+        .then(data => console.log(data))
+
+        //post正文为json
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+            })
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error))
+
+        //post正文为x-www-form-urlencoded
+        fetch(url, {
+            method: 'POST',
+            body: new URLSearchParams(data),
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error))
+
+        //post正文为multipart/form-data
+        fetch(url, {
+            method: 'POST',
+            body: new FormData(form)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error))
+
+        //获取二进制文件
+        fetch('flowers.jpg')
+        .then(function(res) {
+            if (res.ok) {
+                return res.blob()
+            }
+            throw new Error('Network response was not ok.')
+        }).then(binary => {
+            let objectURL = URL.createObjectURL(binary)
+            console.log(objectURL)
+        }).catch(error => {
+            console.log('There has been a problem with your fetch operation: ', error.message)
+        })
+
+        //请求选项和响应处理
+        //https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch#parameters
+        //https://www.ruanyifeng.com/blog/2020/12/fetch-tutorial.html
+        fetch(url, {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': 'xxx',
+            }),
+            body: JSON.stringify(data),
+
+            mode: 'cors', // no-cors, cors, *same-origin
+            credentials: 'same-origin', // include, same-origin, *omit
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            redirect: 'follow', // manual, *follow, error
+            referrer: '',
+            referrerPolicy: 'no-referrer', // *no-referrer-when-downgrade, no-referrer, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            integrity: '',
+            keepalive: false,
+            signal: null,
+
+            //node-fetch
+            follow: 20,         // maximum redirect count. 0 to not follow redirect
+            timeout: 0,         // req/res timeout in ms, it resets on redirect. 0 to disable (OS limit applies). Signal is recommended instead.
+            compress: true,     // support gzip/deflate content encoding. false to disable
+            size: 0,            // maximum response body size in bytes. 0 to disable
+            agent: null         // http(s).Agent instance or function that returns an instance (see below)
+        })
+        .then(res => {
+            console.log(res.ok)
+            console.log(res.status)
+            console.log(res.statusText)
+
+            console.log(res.url)
+            console.log(res.type)
+            console.log(res.redirected)
+
+            console.log(res.headers.get('Content-Type'))
+            console.log(res.headers.get('Date'))
+
+            return res.json().then(json => {
+                
+            })
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error(error))
+
+
+
+        /*浏览器*/
+        new URL()
+        new URLSearchParams()
+        new FormData()
+        new Headers()
+
+        //初始化URL/URLSearchParams实例
+        let url = new URL('https://example.com?foo=1&bar=2')
+        let params = new URLSearchParams(url.search)
+
+        // Pass in a string literal
+        let params2 = new URLSearchParams("foo=1&bar=2")
+        let params2a = new URLSearchParams("?foo=1&bar=2")
+
+        // Pass in a sequence of pairs
+        let params3 = new URLSearchParams([["foo", "1"], ["bar", "2"]])
+
+        // Pass in a record
+        let params4 = new URLSearchParams({"foo": "1", "bar": "2"})
+
+        // 初始化FormData实例
+        let form = document.querySelector('form')
+        let formData = new FormData(form)
+
+        // formData添加对象
+        let data = {a: 1, b: 2}
+        Object.keys(data).map(k => {
+            data[k] && formData.append(k, data[k])
+        })
+
+        // formData添加文件
+        const fileField = document.querySelector('input[type="file"]')
+        formData.append('avatar', fileField.files[0])
+
+        // forDate添加多选文件
+        const photos = document.querySelector('input[type="file"][multiple]')
+        for (let i = 0; i < photos.files.length; i++) {
+            formData.append('photos', photos.files[i])
+        }
+
+        // 初始化Headers实例
+        let myHeaders = new Headers({ 'Content-Type' : 'image/jpeg', 'Accept-Charset' : 'utf-8', 'X-My-Custom-Header' : 'Zeke are cool' })
+
+
+
+        /*node.js*/
+        const { URL, URLSearchParams } = require('url')  //原生模块
+        const querystring = require('querystring')  //原生模块
+        const qs = require('qs')  //npm模块
+        const FormData = require('form-data')  //npm模块
+        const Headers = require('headers-utils')  //npm模块
+
+        //node的form-data模块 可能跟浏览器实现有些差别!!!
+        //https://www.npmjs.com/package/form-data#axios
+        //https://www.npmjs.com/package/form-data#node-fetch
+
+        //qs模块比querystring模块更加强大
+        let obj = {
+            name: 'john',
+            favs: ['a', 'b'],
+            address: {city: 'dd'},
+            friends: [{name:'tom'}, {name:'jonny'}]
+        }
+        querystring.stringify(obj)  //name=john&favs=a&favs=b&address=&friends=&friends=
+        qs.stringify(obj)  //name=john&favs[0]=a&favs[1]=b&address[city]=dd&friends[0][name]=tom&friends[1][name]=jonny
+
+    </script>
+</body>
+</html>

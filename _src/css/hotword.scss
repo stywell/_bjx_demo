@@ -1,0 +1,223 @@
+@import "_comm";
+
+
+.cc-banner {
+    width: 100%;
+    height: 160px;
+    background: url(../img/hotword_ban.jpg) no-repeat center center;
+    .box {
+        position: relative;
+        margin: 0 auto;
+        width: 1200px;
+        height: 100%;
+        font-size: 0;
+        &::before {
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            width: 0;
+            height: 100%;
+        }
+        .info {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: left;
+            color: #fff;
+            h1, p {
+                margin: 0;
+            }
+            h1 {
+                margin-bottom: 8px;
+                font-weight: normal;
+                font-size: 32px;
+            }
+            p {
+                line-height: 28px;
+                font-size: 16px;
+            }
+        }
+        .aux {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 470px;
+            height: 100%;
+            background: url(../img/hotword_ban_aux.png) no-repeat center 30px;
+            opacity: .8;
+            & ~ .info {
+                width: 700px;
+            }
+            span {
+                position: absolute;
+                padding: 0 10px;
+                height: 18px;
+                line-height: 18px;
+                font-size: 12px;
+                color: #ccc;
+                border: 1px solid #ccc;
+                border-radius: 9px;
+                opacity: .6;
+                &:nth-child(1),
+                &:nth-child(2) {
+                    top: 33px;
+                }
+                &:nth-child(3),
+                &:nth-child(4) {
+                    top: 76px;
+                }
+                &:nth-child(5),
+                &:nth-child(6) {
+                    top: 121px;
+                }
+
+                &:nth-child(1) {
+                    right: 318px;
+                }
+                &:nth-child(2) {
+                    left: 318px;
+                }
+                &:nth-child(3) {
+                    right: 350px;
+                }
+                &:nth-child(4) {
+                    left: 350px;
+                }
+                &:nth-child(5) {
+                    right: 365px;
+                }
+                &:nth-child(6) {
+                    left: 365px;
+                }
+            }
+        }
+    }
+}
+.cc-crumbs {
+    .box {
+        margin: 20px auto;
+        width: 1200px;
+        font-size: 0;
+        color: $font-color3;
+        span {
+            font-size: 14px;
+        }
+        em {
+            font-size: 14px;
+            & + em {
+                &::before {
+                    content: ">";
+                    margin: 0 5px;
+                }
+            }
+            &:last-child {
+                a {
+                    color: $main-color;
+                }
+            }
+            a {
+                font-style: normal;
+                color: $font-color3;
+            }
+        }
+        
+    }
+}
+.cc-alphabet {
+    &.gap {
+        margin-top: 20px;
+        padding-bottom: 30px;
+    }
+    .box {
+        margin: 0 auto;
+        width: 1200px;
+        height: 34px;
+        p {
+            margin-right: -12.64px;
+            font-size: 0;
+            color: $font-color1;
+            a {
+                display: inline-block;
+                vertical-align: top;
+                margin-right: 12.64px;
+                font-size: 14px;
+                width: 32px;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                border: 1px solid #dcdbdc;
+            }
+        }
+    }
+}
+.cc-hotword {
+    margin-top: 20px;
+    .box {
+        margin: 0 auto;
+        width: 1200px;
+        dl {
+            padding: 15px 25px;
+            &:nth-child(2n) {
+                background: #f6f6f6;
+            }
+            dt {
+                margin-bottom: 5px;
+                height: 40px;
+                line-height: 40px;
+                b {
+                    font-weight: normal;
+                    font-size: 30px;
+                    color: $font-color1;
+                }
+                a {
+                    float: right;
+                    font-size: 14px;
+                    color: $font-color3;
+                }
+            }
+            dd {
+                margin-right: -2%;
+                line-height: 30px;
+                font-size: 0;
+                a {
+                    display: inline-block;
+                    vertical-align: top;
+                    margin-right: 2%;
+                    width: 18%;
+                    height: 30px;
+                    font-size: 14px;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}
+.cc-paging {
+    .box {
+        margin: 40px 0;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        font-size: 0;
+        a {
+            display: inline-block;
+            vertical-align: top;
+            width: 28px;
+            height: 28px;
+            font-size: 14px;
+            background: #f4f4f5;
+            border: 1px solid #f4f4f5;
+            border-radius: 4px;
+            &:hover {
+                border-color: $main-color;
+            }
+            &.active {
+                color: #fff;
+                background: $main-color;
+                border-color: $main-color;
+            }
+            & + a {
+                margin-left: 20px;
+            }
+        }
+    }
+}

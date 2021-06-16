@@ -1,0 +1,240 @@
+{
+  "id": "2420602",
+  "name": "bjx_mt",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "20730728",
+      "name": "热度值",
+      "font_class": "reduzhi",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "19097674",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e7e5",
+      "unicode_decimal": 59365
+    },
+    {
+      "icon_id": "5348068",
+      "name": "qq-zone",
+      "font_class": "qq-zone",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "10131995",
+      "name": "qq",
+      "font_class": "qq",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "17574566",
+      "name": "weibo",
+      "font_class": "weibo",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "17819318",
+      "name": "收起",
+      "font_class": "shouqi",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "1695558",
+      "name": "回复实心",
+      "font_class": "pinglun",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "3948176",
+      "name": "回复",
+      "font_class": "huifu",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "4464081",
+      "name": "左-圆",
+      "font_class": "zuo-yuan",
+      "unicode": "e7c7",
+      "unicode_decimal": 59335
+    },
+    {
+      "icon_id": "4464086",
+      "name": "右-圆",
+      "font_class": "you-yuan",
+      "unicode": "e7c8",
+      "unicode_decimal": 59336
+    },
+    {
+      "icon_id": "6598339",
+      "name": "caret-down",
+      "font_class": "caret-down",
+      "unicode": "e8ec",
+      "unicode_decimal": 59628
+    },
+    {
+      "icon_id": "6598341",
+      "name": "caret-up",
+      "font_class": "caret-up",
+      "unicode": "e8ed",
+      "unicode_decimal": 59629
+    },
+    {
+      "icon_id": "13423242",
+      "name": "Qr code",
+      "font_class": "qr-code",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "15838427",
+      "name": "arrow-up-circle",
+      "font_class": "arrow-up-circle",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "15838459",
+      "name": "direction-down-circle",
+      "font_class": "direction-down-circle",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "4766692",
+      "name": "like",
+      "font_class": "like",
+      "unicode": "e7c9",
+      "unicode_decimal": 59337
+    },
+    {
+      "icon_id": "4766954",
+      "name": "star",
+      "font_class": "star",
+      "unicode": "e7e0",
+      "unicode_decimal": 59360
+    },
+    {
+      "icon_id": "4936669",
+      "name": "like-fill",
+      "font_class": "like-fill",
+      "unicode": "e869",
+      "unicode_decimal": 59497
+    },
+    {
+      "icon_id": "4936673",
+      "name": "star-fill",
+      "font_class": "star-fill",
+      "unicode": "e86a",
+      "unicode_decimal": 59498
+    },
+    {
+      "icon_id": "1141050",
+      "name": "投稿",
+      "font_class": "tougao",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "14087130",
+      "name": "直播中",
+      "font_class": "zhibozhong",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "14087131",
+      "name": "直播中",
+      "font_class": "zhibozhong-0",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "14101586",
+      "name": "暂停",
+      "font_class": "bofang",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "631375",
+      "name": "火",
+      "font_class": "huo",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "608170",
+      "name": "引号",
+      "font_class": "yinhao2",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "608172",
+      "name": "引号",
+      "font_class": "yinhao",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "13332699",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "853592",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "4425828",
+      "name": "上拉",
+      "font_class": "shangla",
+      "unicode": "e797",
+      "unicode_decimal": 59287
+    },
+    {
+      "icon_id": "4425830",
+      "name": "下拉",
+      "font_class": "xiala",
+      "unicode": "e798",
+      "unicode_decimal": 59288
+    },
+    {
+      "icon_id": "4425831",
+      "name": "左边",
+      "font_class": "zuobian",
+      "unicode": "e799",
+      "unicode_decimal": 59289
+    },
+    {
+      "icon_id": "4425832",
+      "name": "右边",
+      "font_class": "youbian",
+      "unicode": "e79a",
+      "unicode_decimal": 59290
+    },
+    {
+      "icon_id": "13792011",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}
