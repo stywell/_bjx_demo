@@ -10,6 +10,8 @@ const clean = require('gulp-clean')                  //清除文件
 const autoprefixer = require('gulp-autoprefixer')    //自动添加前缀
 const cleanCss = require('gulp-clean-css')           //合并压缩css
 const replace = require('gulp-replace')              //字符串替换
+const { createGulpEsbuild } = require('gulp-esbuild')//打包模块
+const esbuild = createGulpEsbuild({ pipe: true })
 const babel = require('gulp-babel')                  //ES6转ES5
 const uglify = require('gulp-uglify')                //混淆压缩js
 const htmlMinify = require('gulp-html-minify')       //压缩html
@@ -164,22 +166,39 @@ function compress_css() {
 
 //复制js子目录文件
 function copy_dist_js() {
-    return  src('public/js/*/**')
+    return  src(['public/js/*/**', '!public/js/module/*/**'])
             .pipe(dest('_dist/js/'))
 }
 //压缩js
 function compress_js() {
-    return  src(['public/js/**/*.js', '!public/js/**/*.min.js'])
+    return  src(['public/js/**/*.js', '!public/js/**/*.min.js', '!public/js/**/*.esm.js', '!public/js/module/*/**'])
             .pipe(replace("'/js/", "'"+cdn_href+"/js/"))
             .pipe(replace("'/img/", "'"+cdn_href+"/img/"))
             .pipe(babel({presets: ['@babel/preset-env'], sourceType: 'script'}))
             .pipe(uglify({ie8: true}))
             .pipe(dest('_dist/js/'))
 }
+//打包js
+function bundle_js() {
+    return  src(['public/js/**/*.esm.js'])
+            .pipe(esbuild({
+                bundle: true,
+            }))
+            .pipe(replace('"/js/', '"'+cdn_href+'/js/'))
+            .pipe(replace('"/img/', '"'+cdn_href+'/img/'))
+            .pipe(babel({presets: ['@babel/preset-env'], sourceType: 'script'}))
+            .pipe(uglify({ie8: true}))
+            .pipe(rename(function(path){
+                path.basename = path.basename.replace('.esm', '')
+            }))
+            .pipe(dest('_dist/js/'))
+}
 
 //压缩模板
 function compress_htm() {
     return  src('views/**/*.htm')
+            .pipe(replace('type="module"', ''))
+            .pipe(replace('.esm.js', '.js'))
             .pipe(htmlMinify())
             .pipe(dest('views_min/'))
 }
@@ -273,6 +292,7 @@ exports.pub = series(
         copy_dist_js,
         compress_css,
         compress_js,
+        bundle_js,
         compress_htm
     ),
     parallel(
@@ -289,6 +309,7 @@ exports['pub-cdn'] = series(
         copy_dist_js,
         compress_css,
         compress_js,
+        bundle_js,
         compress_htm
     ),
     precompile_tpl,
@@ -302,11 +323,11 @@ exports['pub-ser'] = series(
 )
 /*其他几个公开的任务*/
 exports.tpl = tpl
+exports.upload = upload
+exports.pack = pack
 exports['watch-tpl'] = watch_tpl
 exports['pub-tpl'] = series(
     compress_htm,
     precompile_tpl,
     clean_views_min
 )
-exports.upload = upload
-exports.pack = pack
